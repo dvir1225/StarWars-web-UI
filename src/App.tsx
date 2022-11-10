@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import TOC from "./components/TOC";
 import ChosenFilm from "./components/ChosenFilm";
+import Modal from "./components/Modal";
 
 export interface Film {
   title: string;
@@ -24,6 +25,7 @@ function App() {
   const [chosenFilm, setChosenFilm] = useState<Film>();
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [favoriteFilm, setFavoriteFilm] = useState<Film>();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     const url = "https://swapi.dev/api/films/";
@@ -53,8 +55,10 @@ function App() {
   function storeFilm(film: Film) {
     window.localStorage.setItem("film-title", film.title);
     setFavoriteFilm(film);
+    setModalIsOpen(true);
   }
 
+  console.log(modalIsOpen);
   if (!isDataLoaded) {
     return (
       <div className="loading">
@@ -65,6 +69,9 @@ function App() {
 
   return (
     <main className="container-fluid h-100">
+      {modalIsOpen && (
+        <Modal favoriteFilm={favoriteFilm} setModalIsOpen={setModalIsOpen} />
+      )}
       <nav className="toc d-flex flex-column ml-5">
         <img
           className="toc--logo"

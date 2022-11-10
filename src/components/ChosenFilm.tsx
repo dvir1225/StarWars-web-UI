@@ -12,8 +12,7 @@ export default function ChosenFilm({
   function formatAbstract(abstract: string): any {
     return { __html: `${abstract.replace(/\r\n/g, "<br />")}` };
   }
-  console.log("chosenFilm", chosenFilm);
-  console.log("fav", favoriteFilm);
+
   return (
     <div className="mb-auto ml-auto mr-auto chosenFilm d-flex flex-column align-items-center">
       <h1 className="font-weight-bold display-3 mb-3 chosenFilm--title">
