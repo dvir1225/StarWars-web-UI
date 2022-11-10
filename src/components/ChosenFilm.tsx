@@ -10,7 +10,16 @@ export default function ChosenFilm({
   favoriteFilm,
 }: any) {
   function formatAbstract(abstract: string): any {
-    return { __html: `${abstract.replace(/\r\n/g, "<br />")}` };
+    const arr = abstract.split("\r\n");
+    const formattedAbstract = arr.map((line) => {
+      return (
+        <>
+          <span>{line}</span>
+          <br />
+        </>
+      );
+    });
+    return formattedAbstract;
   }
 
   return (
@@ -18,10 +27,9 @@ export default function ChosenFilm({
       <h1 className="font-weight-bold display-3 mb-3 chosenFilm--title">
         {chosenFilm?.title}
       </h1>
-      <p
-        className="mr-3 text-center chosenFilm--abstract"
-        dangerouslySetInnerHTML={formatAbstract(chosenFilm.opening_crawl)}
-      ></p>
+      <p className="mr-3 text-center chosenFilm--abstract">
+        {formatAbstract(chosenFilm.opening_crawl)}
+      </p>
       <button
         onClick={() => {
           storeFilm(chosenFilm);
