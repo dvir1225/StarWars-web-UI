@@ -23,6 +23,7 @@ function App() {
   const [allFilms, setAllFilms] = useState<Film[]>();
   const [chosenFilm, setChosenFilm] = useState<Film>();
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [favoriteFilm, setFavoriteFilm] = useState<Film>();
 
   useEffect(() => {
     const url = "https://swapi.dev/api/films/";
@@ -43,6 +44,7 @@ function App() {
         (film: Film) => film.title === storedFilm
       );
       setChosenFilm(defaultFilm[0]);
+      setFavoriteFilm(defaultFilm[0]);
     } else {
       setChosenFilm(res.results[0]);
     }
@@ -50,6 +52,7 @@ function App() {
 
   function storeFilm(film: Film) {
     window.localStorage.setItem("film-title", film.title);
+    setFavoriteFilm(film);
   }
 
   if (!isDataLoaded) {
@@ -73,7 +76,11 @@ function App() {
         </h4>
         <TOC allFilms={allFilms} setChosenFilm={setChosenFilm} />
       </nav>
-      <ChosenFilm chosenFilm={chosenFilm} storeFilm={storeFilm} />
+      <ChosenFilm
+        chosenFilm={chosenFilm}
+        storeFilm={storeFilm}
+        favoriteFilm={favoriteFilm}
+      />
     </main>
   );
 }
