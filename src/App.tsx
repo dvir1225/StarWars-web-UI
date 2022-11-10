@@ -38,14 +38,14 @@ function App() {
   }, []);
 
   if (!isDataLoaded) {
-    return <h1>Please wait while the data loads</h1>;
+    return <h1 className="loading">Please wait while the data loads</h1>;
   }
 
   return (
-    <div>
+    <main>
       <TOC allFilms={allFilms} setChosenFilm={setChosenFilm} />
       <ChosenFilm chosenFilm={chosenFilm} setFavoriteFilm={setFavoriteFilm} />
-    </div>
+    </main>
   );
 }
 
