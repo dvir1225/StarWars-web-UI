@@ -4,6 +4,7 @@ type Props = {
   chosenFilm: Film | undefined;
   storeFilm: Function;
 };
+
 export default function ChosenFilm({
   chosenFilm,
   storeFilm,
