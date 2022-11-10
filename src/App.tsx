@@ -82,7 +82,9 @@ function App() {
           src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"
           alt="star wars logo"
         />
-        <h4 className="text-center">Choose a film:</h4>
+        <h4 className="text-center font-weight-bold mt-3 mb-3">
+          Choose a film:
+        </h4>
         <TOC allFilms={allFilms} setChosenFilm={setChosenFilm} />
       </nav>
       <ChosenFilm

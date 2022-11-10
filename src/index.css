@@ -24,6 +24,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 code {
@@ -51,8 +53,12 @@ nav {
 }
 .chosenFilm--abstract {
   font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  padding: 5px 10px;
 }
 
 .toc--logo {
   width: 450px;
+  border-radius: 45%;
 }
