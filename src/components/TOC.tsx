@@ -7,7 +7,7 @@ export default function TOC({ allFilms, setChosenFilm }: any) {
       <div className="toc--film mb-2" key={film.title}>
         <button
           onClick={() => setChosenFilm(film)}
-          className="btn btn-primary toc--film-title"
+          className="btn btn-light toc--film-title"
         >
           {film.title}
         </button>

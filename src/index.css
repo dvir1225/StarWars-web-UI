@@ -1,3 +1,5 @@
+@import url("https://fonts.cdnfonts.com/css/univers");
+
 * {
   box-sizing: border-box;
 }
@@ -5,8 +7,13 @@
 html,
 body,
 #root {
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+#root {
+  background-color: #000;
+  color: yellow;
 }
 
 body {
@@ -38,7 +45,13 @@ nav {
 .toc--film-title {
   width: 100%;
 }
-
+.chosenFilm {
+  font-family: Univers, sans-serif;
+}
 .chosenFilm--abstract {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+}
+
+.toc--logo {
+  width: 450px;
 }

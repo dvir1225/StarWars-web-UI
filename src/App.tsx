@@ -77,7 +77,12 @@ function App() {
   return (
     <main className="container-fluid h-100">
       <nav className="toc d-flex flex-column ml-5">
-        <h4>Choose a film:</h4>
+        <img
+          className="toc--logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"
+          alt="star wars logo"
+        />
+        <h4 className="text-center">Choose a film:</h4>
         <TOC allFilms={allFilms} setChosenFilm={setChosenFilm} />
       </nav>
       <ChosenFilm
