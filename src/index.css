@@ -12,7 +12,8 @@ body,
 }
 
 #root {
-  background-color: #000;
+  background: url("https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-25.jpg")
+    repeat;
   color: yellow;
 }
 
