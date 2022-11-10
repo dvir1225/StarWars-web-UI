@@ -48,7 +48,8 @@ nav {
 .toc--film-title {
   width: 100%;
 }
-.chosenFilm {
+.chosenFilm,
+.loading {
   font-family: Univers, sans-serif;
 }
 .chosenFilm--abstract {
@@ -61,4 +62,16 @@ nav {
 .toc--logo {
   width: 450px;
   border-radius: 45%;
+}
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading h1 {
+  font-size: 5vw;
 }

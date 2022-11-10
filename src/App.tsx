@@ -71,7 +71,11 @@ function App() {
   // }
 
   if (!isDataLoaded) {
-    return <h1 className="loading">Please wait while the data loads</h1>;
+    return (
+      <div className="loading">
+        <h1>Fetching data from a galaxy far, far away...</h1>
+      </div>
+    );
   }
 
   return (
