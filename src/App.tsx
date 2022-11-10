@@ -23,7 +23,6 @@ function App() {
   const [allFilms, setAllFilms] = useState<Film[]>();
   const [chosenFilm, setChosenFilm] = useState<Film>();
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const [favoriteFilm, setFavoriteFilm] = useState<any>();
 
   useEffect(() => {
     const url = "https://swapi.dev/api/films/";
@@ -31,44 +30,27 @@ function App() {
       .then((data) => data.json())
       .then((res) => {
         setAllFilms(res.results);
-        setChosenFilm(res.results[0]);
-        // loadDefaultFilm(res);
+        loadDefaultFilm(res);
         setIsDataLoaded(true);
       })
       .catch((error) => console.log(error));
   }, []);
 
-  // function loadDefaultFilm(res: any): void {
-  //   const storedFilm = localStorage.getItem("film-title");
-  //   if (storedFilm === null) {
-  //     setChosenFilm(res.results[0]);
-  //     console.log("not stored");
-  //   } else if (storedFilm !== null) {
-  //     const favFilm: any = allFilms?.filter(
-  //       (film) => film.title !== storedFilm
-  //     );
-  //     setChosenFilm(favFilm);
-  //     console.log("stored");
-  //   }
-  // else if (allFilms !== undefined) {
-  //   allFilms.forEach((film) => {
-  //     if (film.title === storedFilm) {
-  //       setChosenFilm(film);
-  //     }
-  //   });
-  // }
-  // }
+  function loadDefaultFilm(res: any): void {
+    const storedFilm = localStorage.getItem("film-title");
+    if (storedFilm) {
+      const defaultFilm = res.results?.filter(
+        (film: Film) => film.title === storedFilm
+      );
+      setChosenFilm(defaultFilm[0]);
+    } else {
+      setChosenFilm(res.results[0]);
+    }
+  }
 
-  // function storeFilm(film: Film) {
-  //   window.localStorage.setItem("film-title", film.title);
-  //   console.log("stored film");
-  //   console.log(localStorage.getItem("film-title"));
-  // }
-
-  // function handleFavorite(film: Film): void {
-  //   setFavoriteFilm(film);
-  //   storeFilm(film);
-  // }
+  function storeFilm(film: Film) {
+    window.localStorage.setItem("film-title", film.title);
+  }
 
   if (!isDataLoaded) {
     return (
@@ -91,10 +73,7 @@ function App() {
         </h4>
         <TOC allFilms={allFilms} setChosenFilm={setChosenFilm} />
       </nav>
-      <ChosenFilm
-        chosenFilm={chosenFilm}
-        //  handleFavorite={handleFavorite}
-      />
+      <ChosenFilm chosenFilm={chosenFilm} storeFilm={storeFilm} />
     </main>
   );
 }

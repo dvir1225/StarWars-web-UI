@@ -1,5 +1,5 @@
 import { Film } from "../App";
-export default function ChosenFilm({ chosenFilm, handleFavorite }: any) {
+export default function ChosenFilm({ chosenFilm, storeFilm }: any) {
   function formatAbstract(abstract: string): any {
     return { __html: `${abstract.replace(/\r\n/g, "<br />")}` };
   }
@@ -15,7 +15,7 @@ export default function ChosenFilm({ chosenFilm, handleFavorite }: any) {
       ></p>
       <button
         onClick={() => {
-          handleFavorite(chosenFilm);
+          storeFilm(chosenFilm);
         }}
         className="btn btn-lg btn-light chosenFilm--setFavorite"
       >

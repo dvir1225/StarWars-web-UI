@@ -48,6 +48,11 @@ nav {
 .toc--film-title {
   width: 100%;
 }
+
+.toc--film-title {
+  width: 50%;
+}
+
 .chosenFilm,
 .loading {
   font-family: Univers, sans-serif;
