@@ -1,23 +1,24 @@
-// import { Film } from "../App";
+import { Film } from "../App";
 
-// type Props = {
-//   chosenFilm: Film | undefined;
-//   storeFilm: Function;
-// };
+type Props = {
+  chosenFilm: Film | undefined;
+  storeFilm: Function;
+  favoriteFilm: Film | undefined;
+};
 
 export default function ChosenFilm({
   chosenFilm,
   storeFilm,
   favoriteFilm,
-}: any) {
-  function formatAbstract(abstract: string): any {
+}: Props) {
+  function formatAbstract(abstract: string): JSX.Element[] {
     const arr = abstract.split("\r\n");
-    const formattedAbstract = arr.map((line) => {
+    const formattedAbstract = arr.map((line, index) => {
       return (
-        <>
+        <div key={index}>
           <span>{line}</span>
           <br />
-        </>
+        </div>
       );
     });
     return formattedAbstract;
@@ -28,18 +29,19 @@ export default function ChosenFilm({
       <h1 className="font-weight-bold display-3 mb-3 chosenFilm--title">
         {chosenFilm?.title}
       </h1>
-      <p className="text-center chosenFilm--abstract">
-        {formatAbstract(chosenFilm.opening_crawl)}
-      </p>
+      <div className="text-center chosenFilm--abstract">
+        {chosenFilm !== undefined && formatAbstract(chosenFilm.opening_crawl)}
+      </div>
       <button
         onClick={() => {
           storeFilm(chosenFilm);
         }}
-        className="btn btn-lg btn-light chosenFilm--setFavorite"
+        className="btn btn-lg btn-light mt-3 chosenFilm--setFavorite"
       >
-        {favoriteFilm !== chosenFilm
-          ? `Save ${chosenFilm.title} as favorite`
-          : `${chosenFilm.title} is marked favorite`}
+        {chosenFilm !== undefined &&
+          (favoriteFilm !== chosenFilm
+            ? `Save ${chosenFilm.title} as favorite`
+            : `${chosenFilm.title} is marked favorite`)}
       </button>
     </div>
   );

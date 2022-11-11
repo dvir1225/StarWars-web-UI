@@ -1,8 +1,13 @@
 import { ReactNode } from "react";
 import { Film } from "../App";
 
-export default function TOC({ allFilms, setChosenFilm }: any) {
-  const filmTitles: ReactNode = allFilms.map((film: Film) => {
+type Props = {
+  allFilms: Film[] | undefined;
+  setChosenFilm: Function;
+};
+
+export default function TOC({ allFilms, setChosenFilm }: Props) {
+  const filmTitles: ReactNode = allFilms?.map((film: Film) => {
     return (
       <div
         className="toc--film mb-2 d-flex justify-content-center"

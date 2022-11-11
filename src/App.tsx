@@ -33,22 +33,22 @@ function App() {
       .then((data) => data.json())
       .then((res) => {
         setAllFilms(res.results);
-        loadDefaultFilm(res);
+        loadDefaultFilm(res.results);
         setIsDataLoaded(true);
       })
       .catch((error) => console.log(error));
   }, []);
 
-  function loadDefaultFilm(res: any): void {
+  function loadDefaultFilm(results: Film[]): void {
     const storedFilm = localStorage.getItem("film-title");
     if (storedFilm) {
-      const defaultFilm = res.results?.filter(
+      const defaultFilm = results?.filter(
         (film: Film) => film.title === storedFilm
       );
       setChosenFilm(defaultFilm[0]);
       setFavoriteFilm(defaultFilm[0]);
     } else {
-      setChosenFilm(res.results[0]);
+      setChosenFilm(results[0]);
     }
   }
 
