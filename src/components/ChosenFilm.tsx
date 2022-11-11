@@ -1,9 +1,9 @@
-import { Film } from "../App";
+// import { Film } from "../App";
 
-type Props = {
-  chosenFilm: Film | undefined;
-  storeFilm: Function;
-};
+// type Props = {
+//   chosenFilm: Film | undefined;
+//   storeFilm: Function;
+// };
 
 export default function ChosenFilm({
   chosenFilm,
@@ -24,11 +24,11 @@ export default function ChosenFilm({
   }
 
   return (
-    <div className="mb-auto ml-auto mr-auto chosenFilm d-flex flex-column align-items-center">
+    <div className="mb-auto chosenFilm d-flex flex-column align-items-center mr-auto ml-auto">
       <h1 className="font-weight-bold display-3 mb-3 chosenFilm--title">
         {chosenFilm?.title}
       </h1>
-      <p className="mr-3 text-center chosenFilm--abstract">
+      <p className="text-center chosenFilm--abstract">
         {formatAbstract(chosenFilm.opening_crawl)}
       </p>
       <button

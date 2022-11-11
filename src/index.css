@@ -40,7 +40,6 @@ main {
 }
 
 nav {
-  min-width: max-content;
   height: 100%;
 }
 
@@ -49,24 +48,37 @@ nav {
   width: 100%;
 }
 
+.toc--title {
+  font-size: clamp(16px, 4vw, 32px);
+}
+.toc--logo {
+  border-radius: 45%;
+  width: clamp(100px, 25vw, 450px);
+}
 .toc--film-title {
-  width: 50%;
+  font-size: clamp(12px, 2.5vw, 20px);
 }
 
 .chosenFilm,
 .loading {
   font-family: Univers, sans-serif;
 }
+
+.chosenFilm--title {
+  text-align: center;
+  font-size: clamp(32px, 7vw, 100px);
+}
+
+.chosenFilm--setFavorite {
+  font-size: clamp(14px, 2vw, 26px);
+  width: min(50%, 300px);
+}
+
 .chosenFilm--abstract {
-  font-size: 1.5rem;
+  font-size: clamp(16px, 3vw, 32px);
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 15px;
   padding: 5px 10px;
-}
-
-.toc--logo {
-  width: 450px;
-  border-radius: 45%;
 }
 
 .loading {
@@ -87,6 +99,7 @@ nav {
   height: 100%;
   display: flex;
   align-items: center;
+  text-align: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
 }

@@ -58,7 +58,6 @@ function App() {
     setModalIsOpen(true);
   }
 
-  console.log(modalIsOpen);
   if (!isDataLoaded) {
     return (
       <div className="loading">
@@ -72,13 +71,13 @@ function App() {
       {modalIsOpen && (
         <Modal favoriteFilm={favoriteFilm} setModalIsOpen={setModalIsOpen} />
       )}
-      <nav className="toc d-flex flex-column ml-5">
+      <nav className="toc d-flex flex-column align-items-center ml-3">
         <img
           className="toc--logo"
           src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"
           alt="star wars logo"
         />
-        <h4 className="text-center font-weight-bold mt-3 mb-3">
+        <h4 className="toc--title text-center font-weight-bold mt-3 mb-3">
           Choose a film:
         </h4>
         <TOC allFilms={allFilms} setChosenFilm={setChosenFilm} />
