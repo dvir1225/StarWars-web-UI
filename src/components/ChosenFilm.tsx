@@ -28,33 +28,23 @@ export default function ChosenFilm({
   return (
     <div className="mb-auto chosenFilm d-flex flex-column align-items-center mr-auto ml-auto">
       <div className="chosenFilm--top d-flex justify-content-center align-items-center">
-        <h1 className="font-weight-bold display-3 mb-3 chosenFilm--title">
+        <h1 className="font-weight-bold display-3 chosenFilm--title">
           {chosenFilm?.title}
         </h1>
-      </div>
-      <div className="text-center chosenFilm--abstract">
         <div
           onClick={() => {
             storeFilm(chosenFilm);
           }}
-          className="chosenFilm--favorite mb-4 mt-2 d-flex align-items-center justify-content-center"
+          className="chosenFilm--favorite d-flex align-items-center justify-content-center"
         >
-          {isFavorite ? (
-            <span>Marked favorite</span>
-          ) : (
-            <span> Mark as favorite</span>
-          )}
           {isFavorite ? (
             <i className="ml-3 fa-solid fa-heart chosenFilm--setFavorite"></i>
           ) : (
-            <i
-              className="ml-3 fa-regular fa-heart chosenFilm--setFavorite"
-              // onClick={() => {
-              //   storeFilm(chosenFilm);
-              // }}
-            ></i>
+            <i className="ml-3 fa-regular fa-heart chosenFilm--setFavorite"></i>
           )}
         </div>
+      </div>
+      <div className="text-center chosenFilm--abstract">
         {chosenFilm !== undefined && formatAbstract(chosenFilm.opening_crawl)}
       </div>
     </div>
