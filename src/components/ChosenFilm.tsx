@@ -23,26 +23,40 @@ export default function ChosenFilm({
     });
     return formattedAbstract;
   }
+  const isFavorite = favoriteFilm !== chosenFilm ? false : true;
 
   return (
     <div className="mb-auto chosenFilm d-flex flex-column align-items-center mr-auto ml-auto">
-      <h1 className="font-weight-bold display-3 mb-3 chosenFilm--title">
-        {chosenFilm?.title}
-      </h1>
+      <div className="chosenFilm--top d-flex justify-content-center align-items-center">
+        <h1 className="font-weight-bold display-3 mb-3 chosenFilm--title">
+          {chosenFilm?.title}
+        </h1>
+      </div>
       <div className="text-center chosenFilm--abstract">
+        <div
+          onClick={() => {
+            storeFilm(chosenFilm);
+          }}
+          className="chosenFilm--favorite mb-4 mt-2 d-flex align-items-center justify-content-center"
+        >
+          {isFavorite ? (
+            <span>Marked favorite</span>
+          ) : (
+            <span> Mark as favorite</span>
+          )}
+          {isFavorite ? (
+            <i className="ml-3 fa-solid fa-heart chosenFilm--setFavorite"></i>
+          ) : (
+            <i
+              className="ml-3 fa-regular fa-heart chosenFilm--setFavorite"
+              // onClick={() => {
+              //   storeFilm(chosenFilm);
+              // }}
+            ></i>
+          )}
+        </div>
         {chosenFilm !== undefined && formatAbstract(chosenFilm.opening_crawl)}
       </div>
-      <button
-        onClick={() => {
-          storeFilm(chosenFilm);
-        }}
-        className="btn btn-lg btn-light mt-3 chosenFilm--setFavorite"
-      >
-        {chosenFilm !== undefined &&
-          (favoriteFilm !== chosenFilm
-            ? `Save ${chosenFilm.title} as favorite`
-            : `${chosenFilm.title} is marked favorite`)}
-      </button>
     </div>
   );
 }

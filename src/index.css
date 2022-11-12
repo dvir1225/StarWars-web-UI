@@ -72,9 +72,10 @@ nav {
   font-size: clamp(32px, 7vw, 100px);
 }
 
-.chosenFilm--setFavorite {
-  font-size: clamp(14px, 2vw, 26px);
-  width: min(50%, 300px);
+.chosenFilm--favorite {
+  color: red;
+  font-size: clamp(14px, 2vw, 40px);
+  cursor: pointer;
 }
 
 .chosenFilm--abstract {
