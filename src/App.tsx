@@ -24,7 +24,6 @@ function App() {
   const [allFilms, setAllFilms] = useState<Film[]>();
   const [chosenFilm, setChosenFilm] = useState<Film>();
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const [favoriteFilm, setFavoriteFilm] = useState<Film>();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
@@ -33,29 +32,19 @@ function App() {
       .then((data) => data.json())
       .then((res) => {
         setAllFilms(res.results);
-        loadDefaultFilm(res.results);
+        setChosenFilm(res.results[0]);
         setIsDataLoaded(true);
       })
       .catch((error) => console.log(error));
   }, []);
 
-  function loadDefaultFilm(results: Film[]): void {
-    const storedFilm = localStorage.getItem("film-title");
-    if (storedFilm) {
-      const defaultFilm = results?.filter(
-        (film: Film) => film.title === storedFilm
-      );
-      setChosenFilm(defaultFilm[0]);
-      setFavoriteFilm(defaultFilm[0]);
+  function handleFavoriteStorage(film: Film) {
+    if (!localStorage.getItem(`${film.title}`)) {
+      localStorage.setItem(`${film.title}`, "isFavorite");
+      setModalIsOpen(true);
     } else {
-      setChosenFilm(results[0]);
+      localStorage.removeItem(`${film.title}`);
     }
-  }
-
-  function storeFilm(film: Film) {
-    window.localStorage.setItem("film-title", film.title);
-    setFavoriteFilm(film);
-    setModalIsOpen(true);
   }
 
   if (!isDataLoaded) {
@@ -69,7 +58,7 @@ function App() {
   return (
     <main className="container-fluid h-100">
       {modalIsOpen && (
-        <Modal favoriteFilm={favoriteFilm} setModalIsOpen={setModalIsOpen} />
+        <Modal chosenFilm={chosenFilm} setModalIsOpen={setModalIsOpen} />
       )}
       <nav className="toc d-flex flex-column align-items-center ml-3">
         <img
@@ -84,8 +73,7 @@ function App() {
       </nav>
       <ChosenFilm
         chosenFilm={chosenFilm}
-        storeFilm={storeFilm}
-        favoriteFilm={favoriteFilm}
+        handleFavoriteStorage={handleFavoriteStorage}
       />
     </main>
   );

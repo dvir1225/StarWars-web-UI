@@ -1,16 +1,16 @@
 import { Film } from "../App";
 
 type Props = {
-  favoriteFilm: Film | undefined;
+  chosenFilm: Film | undefined;
   setModalIsOpen: Function;
 };
-export default function Modal({ favoriteFilm, setModalIsOpen }: Props) {
+export default function Modal({ chosenFilm, setModalIsOpen }: Props) {
   return (
     <div className="modal--main">
       <div className="modal--content">
         <p className="modal--text">
-          {favoriteFilm !== undefined &&
-            `${favoriteFilm.title} has been successfuly marked favorite`}
+          {chosenFilm !== undefined &&
+            `${chosenFilm.title} has been successfuly marked favorite`}
         </p>
         <button
           onClick={() => {

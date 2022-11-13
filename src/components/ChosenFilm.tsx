@@ -1,16 +1,31 @@
+import { useEffect, useState } from "react";
 import { Film } from "../App";
 
 type Props = {
   chosenFilm: Film | undefined;
-  storeFilm: Function;
-  favoriteFilm: Film | undefined;
+  handleFavoriteStorage: Function;
 };
 
 export default function ChosenFilm({
   chosenFilm,
-  storeFilm,
-  favoriteFilm,
+  handleFavoriteStorage,
 }: Props) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  //setting and saving favorite state to local storage and state
+  function handleSetFavorite(chosenFilm: Film) {
+    if (localStorage.getItem(`${chosenFilm.title}`)) {
+      setIsFavorite(true);
+    } else {
+      setIsFavorite(false);
+    }
+  }
+
+  useEffect(() => {
+    if (chosenFilm) {
+      handleSetFavorite(chosenFilm);
+    }
+  }, [chosenFilm]);
+  //takes film abstract as a string an formats it as a JSX Elemen
   function formatAbstract(abstract: string): JSX.Element[] {
     const arr = abstract.split("\r\n");
     const formattedAbstract = arr.map((line, index) => {
@@ -23,7 +38,6 @@ export default function ChosenFilm({
     });
     return formattedAbstract;
   }
-  const isFavorite = favoriteFilm !== chosenFilm ? false : true;
 
   return (
     <div className="mb-auto chosenFilm d-flex flex-column align-items-center mr-auto ml-auto">
@@ -33,7 +47,10 @@ export default function ChosenFilm({
         </h1>
         <div
           onClick={() => {
-            storeFilm(chosenFilm);
+            if (chosenFilm) {
+              handleFavoriteStorage(chosenFilm);
+              handleSetFavorite(chosenFilm);
+            }
           }}
           className="chosenFilm--favorite d-flex align-items-center justify-content-center"
         >
